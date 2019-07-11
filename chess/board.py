@@ -31,8 +31,4 @@ pawnb5 = piece.pawn("black", 5, 2)
 pawnb6 = piece.pawn("black", 6, 2)
 pawnb7 = piece.pawn("black", 7, 2)
 pawnb8 = piece.pawn("black", 8, 2)
-pawnw1.x = 0
-pawnw1.y = -1
-pawnw1.movecheck()
-print(pawnw1.currentx, pawnw1.currenty)
 
