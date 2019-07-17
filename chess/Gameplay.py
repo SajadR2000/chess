@@ -1,5 +1,6 @@
 import piece
 import board
+import sys
 def searchsquare(x, y):
     for i in board.squareslist:
         if i.x == x and i.y == y:
@@ -64,20 +65,17 @@ def validmove(piece, dx, dy):
         return 1
 
 
-while True:
-    curntx = int(input("enter current x: ")) #coordinates of chosen square. 2000 means quit
-    if curntx == 2000:
-        break
-    curnty = int(input("enter current y: ")) 
+def Run():
+    curntx = int(input("enter column number: ")) #coordinates of chosen square. 
+    curnty = int(input("enter row number: ")) 
     deltax = int(input("enter delta x: "))   #positive deltax equals going right and negetive deltax equals goinig left
     deltay = int(input("enter delta y: "))   #positive deltay equals going down and negetive deltay equals going up 
-    i = 0
     emptysignal = 1 # 0 means bocc or wocc. 1 means empty
     chosenpiece = searchpiece(curntx, curnty)
     chosensquare =  searchsquare(curntx, curnty)
     if chosenpiece == 0 or chosensquare == 0:
         print("Error!")
-        break
+        return False
     chosenpiece.x = deltax
     chosenpiece.y = deltay
     newchosensquare = searchsquare(chosenpiece.currentx +chosenpiece.x, chosenpiece.currenty +chosenpiece.y)
@@ -99,6 +97,7 @@ while True:
                 chosenpiece.x = -1 * deltax
                 chosenpiece.y = -1 * deltay
                 chosenpiece.movement()
+                return False
             elif chosenpiece.color == "black" and newchosensquare.state == "wocc":
                 piece.pieceslist.remove(piecetobedeleted)
                 newchosensquare.state = "bocc"
@@ -107,7 +106,6 @@ while True:
                 newchosensquare.state = "wocc"
     else:
         print("Error Enter again2!")
-for i in piece.pieceslist:
-    print(i.ptype)
+        return False
 
                 
