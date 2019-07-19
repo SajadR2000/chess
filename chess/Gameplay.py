@@ -27,7 +27,7 @@ def validmove(piece, dx, dy):
         return 0
     # determines whether anything blocks the movements
     if piece.ptype == "knight":
-        pass
+        return 1
     elif dx == dy and dx < 0:
         cx -= 1
         cy -= 1
