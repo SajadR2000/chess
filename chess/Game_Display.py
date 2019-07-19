@@ -1,6 +1,6 @@
 import pygame
 import sys
-import piece
+import Piece
 from pygame.locals import *
 white = (255, 255, 255)
 black = (0, 0, 0)
@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 Runing = True
 
 def pieces_Display():
-    for x in piece.pieceslist:
+    for x in Piece.pieceslist:
         gameDisplay.blit(x.pimg,(width * 0.36 + (x.currentx - 1) * 0.0305 * width ,height * 0.575 - (8 - x.currenty) * 0.0305 * height ))
 
 
@@ -22,9 +22,10 @@ def Game_loop():
         for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
+                    quit()
                     break
                 gameDisplay.fill(white)
-                gameDisplay.blit(piece.boardimg,(width * 0.3,height * 0.3))
+                gameDisplay.blit(Piece.boardimg,(width * 0.3,height * 0.3))
                 pieces_Display()
                 pygame.display.update()
                 clock.tick(60)
