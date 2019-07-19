@@ -1,7 +1,8 @@
-import piece
+import Piece
 import board
 import sys
 import Game_Display 
+from checkfunc import check
 def searchsquare(x, y):
     for i in board.squareslist:
         if i.x == x and i.y == y:
@@ -10,7 +11,7 @@ def searchsquare(x, y):
     
 
 def searchpiece(x, y):
-    for i in piece.pieceslist:
+    for i in Piece.pieceslist:
         if i.currentx == x and i.currenty == y:
             return i
     return 0
@@ -23,7 +24,7 @@ def validmove(piece, dx, dy):
     fy = piece.currenty + dy
     #determines whether the move is in board
     if fx > 8 or fx <= 0 or fy > 8 or fy <= 0:
-        print("invalidmove:out of range!")
+        print("invalid move:out of range!")
         return 0
     # determines whether anything blocks the movements
     if piece.ptype == "knight":
@@ -34,7 +35,7 @@ def validmove(piece, dx, dy):
         while cx != fx and cy != fy:    
             x = searchsquare(cx, cy)
             if x.state != "empty":
-                print("invalidmove")
+                print("invalid move")
                 return 0
             cx -= 1
             cy -= 1
@@ -91,6 +92,46 @@ def pawn_particular_move(piece, dx, dy):
         return 1
     else:
         return 0
+
+
+# determines if the player is checked or not.                     #not complete yet.
+def checkcheck(piece):
+    print(piece.color)
+    if check(piece.color) == 0:
+        return 0
+    return 1
+
+
+# turnes pawn to something else.
+def goodpawn(piece):
+    name = input("What do you want to turn your pawn into?")
+    piece.ptype = name
+    if piece.color == "white":
+        if name == "queen":
+            piece.pimg = Piece.wqueenimg
+        elif name == "rook":
+            piece.pimg = Piece.wrook1img
+        elif name == "bishop":
+            piece.pimg = Piece.wbishop1img
+        elif name == "knight":
+            piece.pimg = Piece.wknight1img
+        else:
+            print("invalid input")
+            goodpawn(piece)
+    else:
+        if name == "queen":
+            piece.pimg = Piece.bqueenimg
+        elif name == "rook":
+            piece.pimg = Piece.brook1img
+        elif name == "bishop":
+            piece.pimg = Piece.bbishop1img
+        elif name == "knight":
+            piece.pimg = Piece.bknight1img
+        else:
+            print("invalid input")
+            goodpawn(piece)
+
+
 def Run():
     try:
         curntx = int(input("enter column number: ")) #coordinates of chosen square. 
@@ -141,18 +182,25 @@ def Run():
                 chosenpiece.movement()
                 return False
             elif chosenpiece.color == "black" and newchosensquare.state == "wocc":
-                piece.pieceslist.remove(piecetobedeleted)
+                Piece.pieceslist.remove(piecetobedeleted)
+                chosensquare.state = "empty"
                 newchosensquare.state = "bocc"
             elif chosenpiece.color =="white" and newchosensquare.state == "bocc":
-                piece.pieceslist.remove(piecetobedeleted)
+                Piece.pieceslist.remove(piecetobedeleted)
+                chosensquare.state = "empty"
                 newchosensquare.state = "wocc"
+        if chosenpiece.ptype == "pawn" and ((chosenpiece.color == "white" and chosenpiece.currenty == 1) or (chosenpiece.color == "black" and chosenpiece.currenty == 8)):
+            goodpawn(chosenpiece)
+        else:
+            pass
     else:
         if move1 == False:
             print("Error Enter again2!")
         if move2 == 0:
             print("Error Enter again3!")
         return False
-
+    check("white")
+    check("black")
 while True:
     Run()
     Game_Display.Game_loop()
