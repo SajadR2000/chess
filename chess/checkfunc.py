@@ -176,6 +176,40 @@ def check(color):
                         cx += 1
                 else:
                     break
+        cx = cxx
+        cy = cyy
+        if searchpiece(cx + 1, cy + 2) != 0:
+            if searchpiece(cx + 1, cy + 2).ptype == "knight" and searchpiece(cx +1, cy + 2).color == "white":
+                print("black is checked!")
+                return 0
+        if searchpiece(cx + 1, cy - 2) != 0:
+            if searchpiece(cx + 1, cy - 2).ptype == "knight" and searchpiece(cx + 1, cy - 2).color == "white":
+                print("black is checked!")
+                return 0
+        if searchpiece(cx - 1, cy + 2) != 0:
+            if searchpiece(cx - 1, cy + 2).ptype == "knight" and searchpiece(cx - 1, cy + 2).color == "white":
+                print("black is checked!")
+                return 0
+        if searchpiece(cx - 1, cy - 2) != 0:
+            if searchpiece(cx - 1, cy - 2).ptype == "knight" and searchpiece(cx - 1, cy - 2).color == "white":
+                print("black is checked!")
+                return 0
+        if searchpiece(cx + 2, cy + 1) != 0:
+            if searchpiece(cx + 2, cy + 1).ptype == "knight" and searchpiece(cx + 2, cy + 1).color == "white":
+                print("black is checked!")
+                return 0
+        if searchpiece(cx + 2, cy - 1) != 0:
+            if searchpiece(cx + 2, cy - 1).ptype == "knight" and searchpiece(cx + 2, cy - 1).color == "white":
+                print("black is checked!")
+                return 0
+        if searchpiece(cx - 2, cy + 1) != 0:
+            if searchpiece(cx - 2, cy + 1).ptype == "knight" and searchpiece(cx - 2, cy + 1).color == "white":
+                print("black is checked!")
+                return 0
+        if searchpiece(cx - 2, cy - 1) != 0: 
+            if searchpiece(cx - 2, cy - 1).ptype == "knight" and searchpiece(cx - 2, cy - 1).color == "white":
+                print("black is checked!")
+                return 0
         return 1
     elif color == "white":
         cx = Piece.kingw.currentx
@@ -338,6 +372,40 @@ def check(color):
                         cx += 1
                 else:
                     break
+        cx = cxx
+        cy = cyy
+        if searchpiece(cx + 1, cy + 2) != 0:
+            if searchpiece(cx + 1, cy + 2).ptype == "knight" and searchpiece(cx +1, cy + 2).color == "black":
+                print("white is checked!")
+                return 0
+        if searchpiece(cx + 1, cy - 2) != 0:
+            if searchpiece(cx + 1, cy - 2).ptype == "knight" and searchpiece(cx + 1, cy - 2).color == "black":
+                print("white is checked!")
+                return 0
+        if searchpiece(cx - 1, cy + 2) != 0:
+            if searchpiece(cx - 1, cy + 2).ptype == "knight" and searchpiece(cx - 1, cy + 2).color == "black":
+                print("white is checked!")
+                return 0
+        if searchpiece(cx - 1, cy - 2) != 0:
+            if searchpiece(cx - 1, cy - 2).ptype == "knight" and searchpiece(cx - 1, cy - 2).color == "black":
+                print("white is checked!")
+                return 0
+        if searchpiece(cx + 2, cy + 1) != 0:
+            if searchpiece(cx + 2, cy + 1).ptype == "knight" and searchpiece(cx + 2, cy + 1).color == "black":
+                print("white is checked!")
+                return 0
+        if searchpiece(cx + 2, cy - 1) != 0:
+            if searchpiece(cx + 2, cy - 1).ptype == "knight" and searchpiece(cx + 2, cy - 1).color == "black":
+                print("white is checked!")
+                return 0
+        if searchpiece(cx - 2, cy + 1) != 0:
+            if searchpiece(cx - 2, cy + 1).ptype == "knight" and searchpiece(cx - 2, cy + 1).color == "black":
+                print("white is checked!")
+                return 0
+        if searchpiece(cx - 2, cy - 1) != 0: 
+            if searchpiece(cx - 2, cy - 1).ptype == "knight" and searchpiece(cx - 2, cy - 1).color == "black":
+                print("white is checked!")
+                return 0
         return 1
 
                     
